@@ -4,11 +4,9 @@ OBJ_DIR = ./obj
 
 NAME    = libft.a
 
-
 SRC     = $(shell find $(SRC_DIR) -name '*.c')
 OBJ     = $(patsubst $(SRC_DIR)%, $(OBJ_DIR)%, $(SRC:%.c=%.o))
 DIRS  	= $(patsubst $(SRC_DIR)%, $(OBJ_DIR)%, $(shell find $(SRC_DIR) -type d))
-
 
 CC      = gcc
 FLAGS   = -Wall -Wextra -Werror
@@ -24,7 +22,7 @@ $(NAME): $(DIRS) $(OBJ)
 $(DIRS):
 	@mkdir -p $(DIRS)
 
-$(addprefix $(OBJ_DIR)/, %.o): $(addprefix $(SRC_DIR)/, %.c)
+$(addprefix $(OBJ_DIR)/, %.o): $(addprefix $(SRC_DIR)/, %.c) 
 	$(CC) $(FLAGS) $(INC) -o $@ -c $<
 
 clean:

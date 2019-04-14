@@ -17,7 +17,6 @@ static size_t	ft_dbl_ipart_to_arr(double ipart, char **nb_str, int sign)
 {
 	size_t		size;
 	size_t		i;
-	double      int_part;
 
 	i = 0;
 	size = 1 + sign;
