@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_log10.c                                         :+:      :+:    :+:   */
+/*   ft_nullsign_dbl.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttroll <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/31 19:18:25 by ttroll            #+#    #+#             */
-/*   Updated: 2019/03/31 19:18:32 by ttroll           ###   ########.fr       */
+/*   Created: 2019/03/31 19:14:07 by ttroll            #+#    #+#             */
+/*   Updated: 2019/03/31 19:14:55 by ttroll           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "ft_math.h"
 
-double	ft_log10(double x)
+double	ft_nullsign_dbl(double x)
 {
-	return (ft_ln(x) / FT_LN_10);
+	t_double_un	u;
+
+	u.f = x;
+	u.i &= 0x7FFFFFFFFFFFFFFF;
+	return (u.f);
 }

@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "ft_math.h"
 
 double	ft_exp(double x)
 {
@@ -30,7 +31,7 @@ double	ft_exp(double x)
 		sign = -1;
 		x = -x;
 	}
-	while (FLT_ABS(temp) > 1e-14)
+	while (temp > 1e-12)
 	{
 		temp = temp * x / i++;
 		sum += temp;

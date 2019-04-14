@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "ft_math.h"
 
 double	ft_powf_ip(double x, int power)
 {
@@ -21,7 +22,7 @@ double	ft_powf_ip(double x, int power)
 	sign = (power < 0) ? -1 : 1;
 	if (power < 0)
 		power = -power;
-	if (x == 0)
+	if (ft_iszero(x))
 		return (0.0f);
 	if (power == 0)
 		return (1.f);

@@ -41,12 +41,12 @@ static int				err_handle(wint_t c, int fd)
 
 int						ft_putwchar_fd(wint_t c, int fd)
 {
-	int				size;
+	size_t				size;
 	unsigned char	*arr;
 	int				i;
 
 	i = 0;
-	size = get_wchar_size(c);
+	size = (size_t)get_wchar_size(c);
 	if (size == 1)
 		i = ft_putchar_fd((char)c, fd);
 	else if (size > MB_CUR_MAX)
@@ -54,15 +54,9 @@ int						ft_putwchar_fd(wint_t c, int fd)
 	else
 	{
 		arr = (unsigned char*)ft_memalloc(size + 1);
-		if (size == 1)
-			arr[i] = (unsigned char)c;
-		else
-		{
-			fill_bytes(arr, &c, size);
-			arr[0] = fill_leading_byte(size, c);
-		}
-		while (i < size)
-			i += write(fd, &(arr[i]), 1);
+		fill_bytes(arr, &c, size);
+		arr[0] = fill_leading_byte(size, c);
+		i += write(fd, arr, size);
 		free(arr);
 	}
 	return (i);

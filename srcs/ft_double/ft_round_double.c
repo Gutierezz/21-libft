@@ -11,14 +11,15 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "ft_math.h"
 
-void	ft_round_double(double *nb, unsigned int precision)
+void	ft_round_double(double *nb, unsigned precision)
 {
 	double	rounder;
 
-	rounder = 5.1 * ft_powf_ip(10, -(precision + 1));
+	rounder = 5.1 * ft_powf_ip(10, -((int)precision + 1));
 	if (!ft_getsign_dbl(*nb))
 		*nb += rounder;
 	else
-		*nb += -rounder;
+		*nb -= rounder;
 }

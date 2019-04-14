@@ -21,11 +21,11 @@ int	ft_atoi(const char *str)
 	i = 0;
 	res = 0;
 	sign = 1;
-	while ((str[i] > 8 && str[i] < 14) || str[i] == 32)
+	while (ft_isspace(str[i]))
 		i++;
 	if (str[i] == '+' || str[i] == '-')
 		sign = (str[i++] == '-') ? -1 : 1;
-	while (str[i] >= 48 && str[i] <= 57)
+	while (ft_isdigit(str[i]))
 	{
 		if ((res * 10) / 10 == res)
 			res = res * 10 + str[i++] - '0';

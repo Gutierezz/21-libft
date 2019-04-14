@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "ft_math.h"
 
 static int		handle_errors(int *n, int *k, double *x, double *sum)
 {
@@ -32,7 +33,7 @@ static int		handle_errors(int *n, int *k, double *x, double *sum)
 		*sum = 0;
 		return (-1);
 	}
-	if (FLT_ABS((2 - *x)) < 1e-10)
+	if (FLT_ABS((2 - *x)) < 1e-2)
 	{
 		*sum = FT_LN_2;
 		return (0);
@@ -56,11 +57,11 @@ double			ft_ln(double x)
 		x /= 2.0f;
 		k++;
 	}
-	if (FLT_ABS((2 - x)) < 1e-10)
+	if (FLT_ABS((2 - x)) < 1e-2)
 		return ((k + 1) * FT_LN_2);
 	x -= 1.0f;
 	an = x;
-	while (FLT_ABS(an) > 1e-14)
+	while (FLT_ABS(an) > 1e-12)
 	{
 		sum += an;
 		++n;

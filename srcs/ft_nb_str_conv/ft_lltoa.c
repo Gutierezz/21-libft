@@ -1,35 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_nblen_base.c                                    :+:      :+:    :+:   */
+/*   ft_lltoa.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttroll <ttroll@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ttroll <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/28 12:22:04 by ttroll            #+#    #+#             */
-/*   Updated: 2019/03/31 19:13:42 by ttroll           ###   ########.fr       */
+/*   Created: 2019/03/02 16:45:46 by ttroll            #+#    #+#             */
+/*   Updated: 2019/03/31 19:27:04 by ttroll           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_nblen_base(long long nb, unsigned int base)
+char	*ft_lltoa(long long nb)
 {
+	char	*arr;
 	size_t	len;
 
-	len = 1;
-	if (base < 2 || base > 16)
-		return (0);
+	if ((len = ft_nblen(nb)) == 0)
+		return (NULL);
+	arr = ft_strnew(len);
+	arr[len] = '\0';
 	if (nb < 0)
 	{
 		if (nb == LLONG_MIN)
-			nb++;
+		{
+			arr[--len] = HEX_STR[-(nb % 10)];
+			nb /= 10;
+		}
 		nb = -nb;
-		(base == 10) ? len++ : len;
+		arr[0] = '-';
 	}
-	while (nb / base)
+	else if (nb == 0)
+		arr[--len] = '0';
+	while (nb)
 	{
-		len++;
-		nb /= base;
+		arr[--len] = HEX_STR[nb % 10];
+		nb /= 10;
 	}
-	return (len);
+	return (arr);
 }
