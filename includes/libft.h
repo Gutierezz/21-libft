@@ -103,6 +103,7 @@ char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strtrim(char const *s);
 char				**ft_strsplit(char const *s, char c);
 char				*ft_strjoin_free(char **s1, char **s2);
+void				ft_string_array_del(char **arr);
 
 int					ft_putchar(char c);
 void				ft_putstr(char const *s);
