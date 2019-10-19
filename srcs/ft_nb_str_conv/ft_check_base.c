@@ -1,43 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bsort_params.c                                  :+:      :+:    :+:   */
+/*   ft_check_base.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttroll <ttroll@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/05 20:33:16 by ttroll            #+#    #+#             */
-/*   Updated: 2018/12/09 14:32:02 by ttroll           ###   ########.fr       */
+/*   Created: 2018/11/28 12:03:19 by ttroll            #+#    #+#             */
+/*   Updated: 2019/03/31 19:59:43 by ttroll           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void		ft_swap_params(char **a, char **b)
+int		ft_check_base(const char *str, int base)
 {
-	char *tmp;
+	int	i;
+	int	len;
+	int	cnt;
 
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
-}
-
-void			ft_bsort_params(char **arr, size_t size)
-{
-	size_t i;
-	size_t j;
-
+	cnt = 0;
+	len = 0;
 	i = 0;
-	if (!arr || !*arr)
-		return ;
-	while (i < size)
-	{
-		j = 0;
-		while (j < size - i)
-		{
-			if (ft_strcmp(arr[j], arr[j + 1]) > 0)
-				ft_swap_params(&arr[j], &arr[j + 1]);
-			j++;
-		}
+	if (base == 10 && (str[i] == '-' || str[i] == '+'))
 		i++;
+	if ((base == 2 || base == 8 || base == 16))
+	{
+		if (ft_skip_prefix(str, base))
+			i += ft_skip_prefix(str, base);
+		else
+			return (0);
 	}
+	len = ft_strlen(&str[i]);
+	while (str[i] && (ft_is_base_digit(str[i++], base) >= 0))
+		cnt++;
+	return ((cnt == len) ? 1 : 0);
 }

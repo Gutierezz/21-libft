@@ -20,7 +20,7 @@ $(NAME): $(DIRS) $(OBJ)
 	@echo Library Libft created.
 
 $(DIRS):
-	mkdir -p $(DIRS)
+	@mkdir -p $(DIRS)
 
 $(addprefix $(OBJ_DIR)/, %.o): $(addprefix $(SRC_DIR)/, %.c) 
 	$(CC) $(FLAGS) $(INC) -o $@ -c $<

@@ -1,43 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bsort_params.c                                  :+:      :+:    :+:   */
+/*   ft_is_base_digit.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttroll <ttroll@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/05 20:33:16 by ttroll            #+#    #+#             */
-/*   Updated: 2018/12/09 14:32:02 by ttroll           ###   ########.fr       */
+/*   Created: 2019/04/10 12:32:11 by ttroll            #+#    #+#             */
+/*   Updated: 2019/04/10 13:24:32 by ttroll           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void		ft_swap_params(char **a, char **b)
+int	ft_is_base_digit(char c, int base)
 {
-	char *tmp;
+	int	index;
 
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
-}
-
-void			ft_bsort_params(char **arr, size_t size)
-{
-	size_t i;
-	size_t j;
-
-	i = 0;
-	if (!arr || !*arr)
-		return ;
-	while (i < size)
-	{
-		j = 0;
-		while (j < size - i)
-		{
-			if (ft_strcmp(arr[j], arr[j + 1]) > 0)
-				ft_swap_params(&arr[j], &arr[j + 1]);
-			j++;
-		}
-		i++;
-	}
+	c = ft_tolower(c);
+	if (ft_isdigit(c))
+		index = c - '0';
+	else if (c >= 'a' && c <= 'f')
+		index = c - 87;
+	else
+		return (-1);
+	if (index >= base)
+		return (-1);
+	return (index);
 }

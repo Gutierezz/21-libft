@@ -45,7 +45,7 @@ int		wide_char_align(t_ft_pf *spec, int *err, int size, wchar_t symb)
 	if (spec->flags & PF_MINUS)
 	{
 		*err = ft_putwchar_fd(symb, spec->fd);
-		if (err > 0)
+		if (*err > 0)
 		{
 			while (i + *err < size)
 				i += ft_putwchar_fd(L' ', spec->fd);

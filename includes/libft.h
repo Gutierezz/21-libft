@@ -6,7 +6,7 @@
 /*   By: ttroll <ttroll@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 22:05:22 by ttroll            #+#    #+#             */
-/*   Updated: 2019/04/12 13:14:27 by ttroll           ###   ########.fr       */
+/*   Updated: 2019/10/19 16:27:23 by ttroll           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 
 # define ALLOC(Value) if (Value == NULL) return (-1);
 
-# ifndef BUFF_SIZE 
-#  define BUFF_SIZE 16
+# ifndef BUFF_SIZE
+#  define BUFF_SIZE 10
 # endif
 
 # define HEX_STR "0123456789abcdef"
@@ -100,9 +100,11 @@ int					ft_strequ(char const *s1, char const *s2);
 int					ft_strnequ(char const *s1, char const *s2, size_t n);
 char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strjoin(char const *s1, char const *s2);
+char				*ft_strjoin_free(char **s1, char **s2);
+char				*ft_str_gapjoin(const char *s1, const char *s2, char gap);
+char				*ft_str_gapjoin_free(char **s1, char **s2, char gap);
 char				*ft_strtrim(char const *s);
 char				**ft_strsplit(char const *s, char c);
-char				*ft_strjoin_free(char **s1, char **s2);
 void				ft_string_array_del(char **arr);
 
 int					ft_putchar(char c);
@@ -130,10 +132,13 @@ void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 
+void				ft_swap(int *a, int *b);
 void				ft_bsort_params(char **arr, size_t size);
 int					ft_countwords(char const *s, int c);
 int					get_high_bit(int x);
 int					get_next_line(const int fd, char **line);
+int					get_next_line2(const int fd, char **line);
+int					quick_select(int *arr, int start, int end, int k);
 
 double				ft_floor(double x);
 double				ft_round(double x);
@@ -143,17 +148,22 @@ double				ft_modf(double x, double *iptr);
 void				ft_round_double(double *nb, unsigned precision);
 int					ft_getexp_dbl(double x);
 int					ft_getsign_dbl(double x);
-double              ft_nullsign_dbl(double x);
+double				ft_nullsign_dbl(double x);
 double				ft_nanval_double(int sign);
 int					ft_isnan(double x);
 int					ft_isinf(double x);
 int					ft_iszero(double x);
+int					ft_is_digit_string(const char *str);
 
 size_t				ft_unblen_base(unsigned long long nb, unsigned int base);
 size_t				ft_nblen(long long nb);
 
 int					ft_atoi(const char *str);
-long long           ft_atoll(const char *str);
+int					ft_skip_prefix(const char *str, int base);
+int					ft_is_base_digit(char c, int base);
+int					ft_check_base(const char *str, int base);
+int					ft_atoi_base(const char *str, int base);
+long long			ft_atoll(const char *str);
 double				ft_atof(const char *str);
 char				*ft_ftoa(double nb, size_t prec, size_t *length, \
 					int *exp_form);

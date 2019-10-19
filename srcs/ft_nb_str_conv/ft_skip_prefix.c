@@ -1,43 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bsort_params.c                                  :+:      :+:    :+:   */
+/*   ft_skip_prefix.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttroll <ttroll@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/05 20:33:16 by ttroll            #+#    #+#             */
-/*   Updated: 2018/12/09 14:32:02 by ttroll           ###   ########.fr       */
+/*   Created: 2019/04/10 12:32:11 by ttroll            #+#    #+#             */
+/*   Updated: 2019/10/19 16:13:36 by ttroll           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void		ft_swap_params(char **a, char **b)
+int	ft_skip_prefix(const char *str, int base)
 {
-	char *tmp;
-
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
-}
-
-void			ft_bsort_params(char **arr, size_t size)
-{
-	size_t i;
-	size_t j;
+	int	i;
 
 	i = 0;
-	if (!arr || !*arr)
-		return ;
-	while (i < size)
+	if (base == 2 || base == 8 || base == 16)
 	{
-		j = 0;
-		while (j < size - i)
-		{
-			if (ft_strcmp(arr[j], arr[j + 1]) > 0)
-				ft_swap_params(&arr[j], &arr[j + 1]);
-			j++;
-		}
-		i++;
+		if (str[i++] != '0')
+			return (0);
+		if (base == 2 && (str[i] == 'b' || str[i] == 'B'))
+			return (2);
+		if (base == 16 && (str[i] == 'x' || str[i] == 'X'))
+			return (2);
+		if (base == 8)
+			return (1);
 	}
+	return (0);
 }

@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_string_array_del.c                              :+:      :+:    :+:   */
+/*   ft_str_gapjoin_free.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttroll <ttroll@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ttroll <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/19 16:02:37 by ttroll            #+#    #+#             */
-/*   Updated: 2019/10/19 16:59:46 by ttroll           ###   ########.fr       */
+/*   Created: 2019/03/31 19:06:50 by ttroll            #+#    #+#             */
+/*   Updated: 2019/03/31 19:07:43 by ttroll           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		ft_string_array_del(char **arr)
+char	*ft_str_gapjoin_free(char **s1, char **s2, char gap)
 {
-	int		i;
+	char	*catstr;
 
-	i = -1;
-	if (arr)
-	{
-		while (arr[++i])
-			ft_strdel(&arr[i]);
-		ft_memdel((void**)&arr);
-	}
+	catstr = NULL;
+	catstr = ft_str_gapjoin(*s1, *s2, gap);
+	ft_strdel(s1);
+	ft_strdel(s2);
+	return (catstr);
 }

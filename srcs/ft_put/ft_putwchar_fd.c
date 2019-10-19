@@ -6,7 +6,7 @@
 /*   By: ttroll <ttroll@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/03 13:15:55 by ttroll            #+#    #+#             */
-/*   Updated: 2019/04/22 18:59:05 by ttroll           ###   ########.fr       */
+/*   Updated: 2019/09/14 15:58:53 by ttroll           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,15 @@ static int				err_handle(wint_t c, int fd)
 
 int						ft_putwchar_fd(wint_t c, int fd)
 {
-	size_t				size;
+	int				size;
 	unsigned char	*arr;
 	int				i;
 
 	i = 0;
-	size = (size_t)get_wchar_size(c);
+	size = get_wchar_size(c);
 	if (size == 1)
 		i = ft_putchar_fd((char)c, fd);
-	else if ((int)size > MB_CUR_MAX)
+	else if (size > (int)MB_CUR_MAX)
 		return (err_handle(c, fd));
 	else
 	{
